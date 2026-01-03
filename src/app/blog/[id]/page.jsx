@@ -15,6 +15,15 @@ const getData = async (id) => {
   return res.json();
 };
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const post = await getData(id);
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+}
+
 const BlogPost = async ({ params }) => {
   const { id } = await params; // 🔥 WAJIB di Next.js terbaru
   const data = await getData(id);
